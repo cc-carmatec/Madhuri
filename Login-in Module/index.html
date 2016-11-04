@@ -1,0 +1,190 @@
+<!doctype HTML>
+<html>
+<head>
+    <title>Login Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"> 
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+	<script src ="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.5.8/angular-messages.min.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    
+</head>
+<body ng-app="app" ng-controller="Controller">
+<div>
+<div class="container">
+<div class="row">  
+   <h2> Login Module </h2>
+
+    <form name="userForm" ng-submit="submitForm()" class="form-horizontal" novalidate>
+        <div class="form-group">
+          <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+            <label>FirstName</label>
+            <input type="text" name="name" class="form-control" ng-model="user.name" ng-minlength="3" ng-maxlength="20" ng-pattern="/^[a-zA-Z]+$/" required>
+            <p ng-show="userForm.name.$invalid && userForm.name.$pristine &&userForm.name.$touched " class="help-block">You firstname is required.</p>
+            <p ng-show="userForm.name.$error.minlength" class="help-block">FirstName is too short.</p>
+            <p ng-show="userForm.name.$error.maxlength" class="help-block">FirstName is too long.</p>
+            <p ng-show="userForm.name.$error.pattern" class="help-block">Please enter a valid firstname.</p>
+        </div>
+        
+      
+        <!-- LastName-->
+        <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" ng-class="{ 'has-error' : userForm.lastname.$invalid && !userForm.lastname.$pristine }">
+            <label>LastName</label>
+            <input type="text" name="lastname" class="form-control" ng-model="user.lastname" ng-minlength="3" ng-maxlength="20" ng-pattern="/^[a-zA-Z]+$/" required>
+            <p ng-show="userForm.lastname.$invalid && userForm.lastname.$pristine &&userForm.lastname.$touched " class="help-block">You lastname is required.</p>
+            <p ng-show="userForm.lastname.$error.minlength" class="help-block">LastName is too short.</p>
+            <p ng-show="userForm.lastname.$error.maxlength" class="help-block">LastName is too long.</p>
+            <p ng-show="userForm.lastname.$error.pattern" class="help-block">Please enter a valid lastname.</p>
+        </div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+        <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" ng-controller="emailController" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" ng-model="user.email" ng-pattern="emailpattern" required>
+            <p ng-show="userForm.email.$invalid && userForm.email.$pristine &&userForm.email.$touched" class="help-block">You email is required.</p>
+            <p ng-show="userForm.email.$error.pattern" class="help-block">Please enter valid email</p>   
+        </div>
+         <!-- Password -->
+        <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" ng-controller="passwordController" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+            <label>Password</label> 
+            <input type="{{inputType}}" name="password" class="form-control" ng-model="user.password" ng-pattern="passwordpattern" required>
+            <input type="checkbox" id="checkbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
+            <label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
+            <label for="checkbox" ng-if="!passwordCheckbox">Show password</label> 
+            <p ng-show="userForm.password.$invalid && userForm.password.$pristine &&userForm.password.$touched" class="help-block">You password is required.</p>
+            <p ng-show="userForm.password.$error.pattern" class="help-block">Please enter valid password</p>
+        </div>
+        </div>
+        <!-- Phone Number -->
+        <div class="form-group">
+        <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" ng-controller="phoneController" ng-class="{ 'has-error' : userForm.phone.$invalid && !userForm.phone.$pristine }">
+            <label>Phone Number</label> 
+            <input type="text" name="phone" class="form-control" ng-model="user.phone" ng-pattern="re" required>
+            
+            <p ng-show="userForm.phone.$invalid && userForm.phone.$pristine &&userForm.phone.$touched" class="help-block">You phone number is required.</p>
+            <p ng-show="userForm.phone.$error.pattern" class="help-block">Please enter valid phone number.</p>
+        </div>
+         <!-- Country -->
+         <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" >
+           <label>Country</label></br>
+            <select name='country' id="country" class="form-control" ng-model="country" ng-options="country as country.CountryName for country in countries" required>
+                <option value="" disabled>Select</option>
+            </select>
+        </div>
+        </div>
+        <!-- State-->
+        <div class="form-group">
+        <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" >
+         <label>Country</label></br>
+           <select name='state' required id="state" class="form-control" ng-disabled="states.length == 0" ng-model="state" ng-options="state as state.StateName for state in states">
+                <option value="" disabled>Select</option>
+            </select>
+          
+        </div>
+      
+        <!-- City-->
+         <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" ng-class="{ 'has-error' : userForm.dateField.$invalid && !userForm.dateField.$pristine }">
+        <label>City</label></br>
+          <select name='city' required id="city" class="form-control" ng-disabled="cities.length == 0" ng-model="city" ng-options="city as city.CityName for city in cities">
+                <option value="" disabled>Select</option>
+            </select>
+                 
+        </div>
+        </div>
+
+        <!-- Pin Code -->
+        <div class="form-group">
+        <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" ng-class="{ 'has-error' : userForm.pincode.$invalid && !userForm.pincode.$pristine }">
+            <label>Pin Code</label>
+            <input type="text" name="pincode" class="form-control" ng-model="user.pincode" ng-minlength="6" ng-maxlength="6" ng-pattern="/^[A-Za-z0-9\d=!\-@._*]*$/"  required>
+            <p ng-show="userForm.pincode.$invalid && userForm.pincode.$pristine &&userForm.pincode.$touched " class="help-block">You Pin Code is required.</p>
+            <p ng-show="userForm.pincode.$error.minlength" class="help-block">Pin Code is too short.</p>
+            <p ng-show="userForm.pincode.$error.maxlength" class="help-block">Pin Code is too long.</p>
+            <p ng-show="userForm.pincode.$error.pattern" class="help-block">Please enter a valid Pin Code.</p>
+        </div>
+      
+        <!-- Comment-->
+        <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" ng-class="{ 'has-error' : userForm.comment.$invalid && !userForm.comment.$pristine }">
+            <label>Comment</label>
+            <textarea class="form-control text" rows="5" name="comment" ng-model="user.comment" ng-minlength="20" ng-maxlength="150" required></textarea>
+            <p ng-show="userForm.comment.$invalid && userForm.comment.$pristine &&userForm.comment.$touched " class="help-block">You Comment is required.</p>
+            <p ng-show="userForm.comment.$error.minlength" class="help-block">Comment is too short.</p>
+            <p ng-show="userForm.comment.$error.maxlength" class="help-block">Comment is too long.</p>
+        </div>
+        </div>
+
+     <!-- File Upload -->
+        <div class="form-group"> 
+        <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" ng-class="{ 'has-error' : userForm.file.$invalid && !userForm.file.$pristine }">
+            <label>File Upload</label>
+            <input type="file" class="form-control" name="pdffile" ng-model="user.file"  />
+             
+        </div>
+        <!-- Checkbox button-->
+        <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12">
+		<label>Checkbox</label></br>
+        	<div ng-repeat="checkBox in checkBoxes">
+            <input type="checkbox" name="checkbox" ng-model="checkBox.isChecked" id="check-box-{{$index}}"  />
+            <span ng-bind="checkBox.label" for="check-box-{{$index}}"></span>
+        	</div>
+        	<!-- If error message should be seen on load -->
+        	<!-- <p class="error-message" ng-show="!isChecked() == true"> Please select a option </p> -->
+		</div>
+		</div>
+		<!-- Profession-->
+     <div class="form-group"> 
+        <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12" ng-class="{ 'has-error' : userForm.profession.$invalid && !userForm.profession.$pristine }">
+            <label>Profession</label>
+            <input type="text" name="profession" class="form-control" ng-model="user.profession" ng-minlength="3" ng-maxlength="20"  ng-pattern="/^[a-zA-Z]+$/" required>
+            <p ng-show="userForm.profession.$invalid && userForm.profession.$pristine &&userForm.profession.$touched " class="help-block">You Profession is required.</p>
+            <p ng-show="userForm.profession.$error.minlength" class="help-block">Profession is too short.</p>
+            <p ng-show="userForm.profession.$error.maxlength" class="help-block">Profession is too long.</p>
+            <p ng-show="userForm.profession.$error.pattern" class="help-block">Please enter a valid profession</p>
+        </div>
+        <!-- Radio button-->
+        <div class=" col-lg-6 col-sm-6 col-md-6 col-xs-12">
+		<label>Radio Button</label></br>
+        <span ng-repeat="option in options">
+            <input type="radio" ng-model="$parent.selected" ng-value="option"/> {{option}} </br>
+        </span>
+    		<!-- If error message should be seen on load -->
+    		<!-- <p class="error-message" ng-show="(!templates.length || !myTemplate.value) == true"> Please select a option </p> -->
+		</div>
+	</div>
+	<div>
+       <button type="submit" class="btn btn-primary" data-ng-click="clearSearch()" ng-disabled="userForm.$invalid ||!isChecked() || !city.Id">Submit</button> 
+       <button type="reset" class="btn btn-primary" id="configreset" value="Reset"> Reset </button>
+    </div> 
+
+    
+
+ 
+	</form>
+  </div>
+  </div>
+  </div>
+  </body>
+  </html>
+  
+  
+				
+					
+
+					
+				
+				
+					
+				
+				
+			

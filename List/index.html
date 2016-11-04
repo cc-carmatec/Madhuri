@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+ 
+  <body ng-app="app">
+
+  <div id="wrapper" class="container-fluid" ng-controller="ticketEntryController">
+      <div ng-controller="ticketLineController">
+          <div kendo-grid="ticketLineGrid" k-options="getTicketLineGridOptions()"></div>
+          <div>{{ thescope | json }}</div>
+      </div>
+      <button id="addButton" ng-click="addRow()" class="btn btn-primary btn-sm">Add Row</button>
+  </div>
+  
+  <script id="ticket-line-editor" type="text/x-kendo-template">
+     
+          <div style="margin:15px 0px 0px 0px">
+              <div style="float:left">
+                  <div>
+                     <label style="margin: 5px 5px 5px 5px ">Name</label>
+                  </div>
+                  <div>
+                      <input name="name" style="width: 200px" />
+                  </div>
+                  <div>
+                      <label style="margin: 5px 5px 5px 5px">Email</label>
+                  </div>
+                  <div>
+                      <input name="email" style="width: 200px" />
+                  </div>
+                  <div>
+                      <label style="margin: 5px 5px 5px 5px">Address</label>
+                  </div>
+                  <div>
+                      <input name="address" style="width: 200px" />
+                  </div>
+                 
+              </div>
+          </div>
+    
+  </script>
+  
+    
+    
+  <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+  <script src="//cdn.kendostatic.com/2014.2.716/js/kendo.all.min.js"></script>
+  <script src="script.js"></script>
+  <script src="ticketEntryController.js"></script>
+  <script src="ticketLineController.js"></script>
+  </body>
+
+</html>

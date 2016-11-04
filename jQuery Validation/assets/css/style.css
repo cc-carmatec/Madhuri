@@ -1,0 +1,13 @@
+.text
+{
+	max-width:400px;
+	max-height: 300px;
+}
+
+.error {
+    border: 2px solid #f00;
+}
+
+.valid {
+    border: 2px solid #0ff;
+}

@@ -1,0 +1,155 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Demo site</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+		<link rel="stylesheet" href="assets/css/bootstrap-select.css">
+		
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css"> 
+		<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+
+		
+	</head>
+	<body>
+		<div class="container">
+			<h2>Registration</h2>
+			<form action="" name="registration" class="form-horizontal form-validate"  id="signupform loginForm">
+				<div class="form-group">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<label for="firstname">First Name</label>
+						<input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter your name"/>
+					</div>
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<label for="lastname">Last Name</label>
+						<input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter last name"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<label for="email">Email</label>
+						<input type="text" class="form-control" name="email" id="email" placeholder="Enter your email"/>
+					</div>
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+
+						<label for="password">Password</label>
+						<input type="password" class="form-control" name="password" id="password" placeholder="Enter your password"/>
+						<input type="checkbox" id="showHide"> Show ?
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<label for="phonenumber">Phone Number</label>
+						<input type="text" class="form-control" name="phonenumber" id="phonenumber" placeholder="Enter your phonenumber"/>
+					</div>
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<label for="profession">Profession</label>
+						<input type="text" class="form-control" name="profession" id="profession" placeholder="Enter your Profession"/>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<label for="pincode">Pin Code</label>
+						<input type="text" class="form-control" name="pincode" id="pincode" placeholder="Enter your Pin Code"/>
+					</div>
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<label for="city">Country</label>
+						<!-- <span name="country" class="form-control" name="country" id="country"></span> -->
+						<!-- In case the geolocation plugin is not used, and the selectpicker/dropdown is used for the country -->
+						<select name="country" class="form-control" id="country" placeholder="Enter your Country"></select>  
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<label for="pincode">State</label>
+						<select name="state" id="state" class="form-control "  placeholder="Enter your State"></select>
+					</div>
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+						<label for="city">City</label>
+						<select name="city" class="form-control" id="city" placeholder="Enter your City"></select>
+					</div>
+				</div>
+				<div class="form-group">
+				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 radiobutton">
+					<div class="radio">
+  						<label><input type="radio" name="optradio">Male</label></br>
+  						<label><input type="radio" name="optradio">Female</label>
+					</div>
+				</div>
+				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 checkboxbutton">
+					<div class="checkbox">
+    					<label><input type="checkbox" name="check" value='Red' />Red</label>
+    					<label><input type="checkbox" name="check"  value='Green' />Green</label></br>
+    					<label><input type="checkbox" name="check" value='Blue' />Blue</label>
+    					<label><input type="checkbox" name="check" value='Yellow' />Yellow</label>
+					</div>
+				</div>
+				</div>
+			
+				<div class="form-group dropdownbutton">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 select-container">
+					<div >
+						<select name="item" class="selectpicker"  title="Choose 2-4 colors">
+						<option value="">Select</option>
+                		<option value="black">Black</option>
+                		<option value="blue">Blue</option>
+                		<option value="green">Green</option>
+                		<option value="orange">Orange</option>
+                		<option value="red">Red</option>
+                		<option value="yellow">Yellow</option>
+                		<option value="white">White</option>
+               			</select>
+					</div>
+					</div>
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+					<div class="message">	
+  						<label for="comment">Comment:</label>
+  						<textarea class="form-control text" rows="5" name="comment" id="comment"></textarea>
+					</div>
+					</div>
+				</div>
+				<div class="form-group dropdownbutton">
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+					<div class="file-upload">
+						<label for='pdffile'> Upload File: </label><input type='file' name='pdffile' />
+					</div>
+					</div>
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+					
+					</div>
+				</div>
+				<p>
+   
+				<button type="submit">Register</button>
+				<button type="reset" id="configreset" value="Reset"> Reset </button>
+
+			</form>
+		</div>
+
+<!-- Script related files -->
+		<script src="assets/js/jquery-1.12.3.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="assets/js/bootstrap-select.js"></script>
+		
+		<script src="assets/js/jquery.validate.js"></script>
+	
+		<script type="text/javascript" src="assets/js/script.js"></script>
+
+		<script>
+		/*The geolocation plugin */
+  // $.getJSON('https://freegeoip.net/json/') 
+  //    .done (function(location)
+  //    {
+  //         $('#country').html(location.country_name);
+          
+  //    });
+</script>
+
+	</body>
+	</html>
+
